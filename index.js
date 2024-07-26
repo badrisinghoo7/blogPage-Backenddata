@@ -1,11 +1,15 @@
 const express = require("express");
 const cors = require("cors");
 const { connection } = require("./db");
+const { blogRouter } = require("./route/blog.route");
+const { userRouter } = require("./route/user.route");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use("/blogs", blogRouter);
+app.use("/users", userRouter);
 app.get("/", (req, res) => {
   res.send("This is a home page");
 });
